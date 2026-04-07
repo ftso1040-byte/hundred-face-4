@@ -45,6 +45,13 @@
       font-family: var(--font-serif);
       font-weight: 500;
       line-height: 1.4;
+      text-wrap: balance; /* タイトルのバランスを整える */
+    }
+
+    /* 文字の泣き（1文字だけの改行）と、英数字等の枠貫通を防ぐ設定 */
+    p, li {
+      text-wrap: pretty;
+      overflow-wrap: break-word;
     }
 
     img {
@@ -53,7 +60,7 @@
       display: block;
     }
 
-    /* 独自のタイポグラフィ設定（文字の泣き防止） */
+    /* 独自のタイポグラフィ設定（意図した文節での改行を促す） */
     .text-unit {
       display: inline-block;
       white-space: nowrap;
@@ -199,7 +206,7 @@
     .value-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 3rem;
+      gap: clamp(1.5rem, 4vw, 3rem);
     }
 
     @media (min-width: 768px) {
@@ -210,7 +217,7 @@
 
     .value-card {
       background: #fff;
-      padding: 3rem 2rem;
+      padding: clamp(2rem, 5vw, 3rem) clamp(1.5rem, 4vw, 2rem);
       border-radius: 8px;
       box-shadow: 0 5px 20px rgba(0,0,0,0.03);
       text-align: center;
@@ -249,6 +256,7 @@
       border-bottom: 1px solid #eee;
       display: flex;
       flex-wrap: wrap;
+      gap: 0.5rem;
     }
 
     .info-list li span:first-child {
@@ -259,7 +267,7 @@
 
     .policy-box {
       background-color: var(--color-bg);
-      padding: 3rem;
+      padding: clamp(1.5rem, 5vw, 3rem);
       border-radius: 8px;
       max-width: 800px;
       margin: 0 auto;
@@ -286,7 +294,7 @@
     .sponsorship-card {
       background-color: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.1);
-      padding: 3rem;
+      padding: clamp(1.5rem, 5vw, 3rem);
       border-radius: 8px;
       max-width: 800px;
       margin: 0 auto;
@@ -294,7 +302,7 @@
 
     .price {
       font-family: var(--font-serif);
-      font-size: 2.5rem;
+      font-size: clamp(2rem, 6vw, 2.5rem);
       text-align: center;
       margin: 2rem 0;
       color: var(--color-accent);
@@ -364,7 +372,8 @@
         <h2 class="section-title" style="text-align: left;">企画趣旨</h2>
         <p class="lead-text">
           <span class="text-unit">本企画は、</span>
-          <span class="text-unit">単なる成功談集ではありません。</span>
+          <!-- スマホ幅を考慮して文節を細分化 -->
+          <span class="text-unit">単なる成功談集では</span><span class="text-unit">ありません。</span>
         </p>
         <p>
           日本の各界で活躍する100名の経営者に、幼年時代・人生の転機・困難・意思決定の軸・経営哲学などを語っていただき、一冊の冊子として編纂します。経営者の思想・価値観を社会的記録として残し、経営という営みの本質を次世代に手渡すことを目的とした、記録性・公共性の高い出版企画です。
@@ -418,13 +427,15 @@
         </ul>
         <p><strong>主な掲載内容：</strong> 子どもの頃に大切にしていたこと / 失敗した経験とその時考えたこと / 仕事で迷ったときの判断のしかた / 今も大切にしている考え方 / 未来を生きる子どもたちへのメッセージ</p>
 
-        <div style="background-color: #fff; padding: 2rem; border-radius: 8px; margin-top: 2rem; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">
+        <!-- スマホでのパディングも clamp で調整 -->
+        <div style="background-color: #fff; padding: clamp(1.5rem, 4vw, 2rem); border-radius: 8px; margin-top: 2rem; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">
           <p style="margin-bottom: 1.5rem; font-weight: 500; line-height: 1.6;">
-            <span class="text-unit">本誌に掲載される100名の経営者の選定は、</span><br>
-            <span class="text-unit">NPO法人先端医療をささえる会 理事長</span>
+            <!-- スマホ幅を考慮して文節を細分化 -->
+            <span class="text-unit">本誌に掲載される</span><span class="text-unit">100名の経営者の</span><span class="text-unit">選定は、</span><br>
+            <span class="text-unit">NPO法人先端医療を</span><span class="text-unit">ささえる会 理事長</span>
             <span class="text-unit">林屋克三郎が行います。</span>
           </p>
-          <a href="https://ftso1040-byte.github.io/hayashiya-story/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size: 0.95rem; padding: 0.75rem 2rem;">林屋克三郎の経歴はこちら</a>
+          <a href="https://ftso1040-byte.github.io/hayashiya-story/ target"="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size: 0.95rem; padding: 0.75rem 2rem;">林屋克三郎の経歴はこちら</a>
         </div>
       </div>
     </div>
@@ -435,8 +446,9 @@
       <h2 class="section-title fade-up">協賛について</h2>
       <div class="sponsorship-card fade-up">
         <p style="text-align: center; margin-bottom: 2rem;">
-          <span class="text-unit">協賛は単なる費用負担ではなく、</span>
-          <span class="text-unit">未来への社会貢献となります。</span>
+          <!-- スマホ幅を考慮して文節を細分化 -->
+          <span class="text-unit">協賛は単なる</span><span class="text-unit">費用負担ではなく、</span>
+          <span class="text-unit">未来への</span><span class="text-unit">社会貢献となります。</span>
         </p>
         <ul style="padding-left: 1.5rem; margin-bottom: 2rem; line-height: 2;">
           <li>冊子への掲載（2ページ構成：ポートレート写真1点、インタビュー原稿）</li>
@@ -452,7 +464,7 @@
 
         <div class="special-price">
           【一括即金払い特典】 契約時一括お支払いの場合： 350,000円（税込）<br>
-          <span style="font-size: 0.85em; font-weight: normal;">※取材・制作スケジュールを優先的に確保いたします。</span>
+          <span style="font-size: 0.85em; font-weight: normal; display: inline-block; margin-top: 0.5rem;">※取材・制作スケジュールを優先的に確保いたします。</span>
         </div>
       </div>
     </div>
